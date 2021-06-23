@@ -1,2 +1,5 @@
 # paceboard
-Simple leaderboard site updated via bash scripts
+
+Simple leaderboard site template updated via Python scripts!
+
+Designed for use within speedrun communities.
