@@ -1,6 +1,7 @@
 ### Util library for interacting with csv files
 
 import csv
+import os
 
 
 def readerWithFunction(filepath, function, arg=None):
@@ -33,6 +34,20 @@ def dictWriterSingleDict(filepath, dict):
         dictWriter.writeheader()
         dictWriter.writerow(dict)
         file.close()
+
+
+def dictReaderFirstRow(filepath):
+    with open(filepath, newline="") as file:
+        print(os.path.abspath(filepath))
+        dict = {}
+        dictReader = csv.DictReader(file)
+        for row in dictReader:
+            firstRow = True
+            if firstRow:
+                dict = row
+            firstRow = False
+        file.close()
+        return dict
 
 
 def getIndexOfField(filepath, field):
