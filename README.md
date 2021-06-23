@@ -2,4 +2,4 @@
 
 Simple leaderboard site template updated via Python scripts!
 
-Designed for use within speedrun communities.
+Designed for use within speedrunning communities.

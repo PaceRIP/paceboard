@@ -1,0 +1,28 @@
+@font-face {
+    font-family: "Fira Code";
+    src: url("../assets/fonts/FiraCode.ttf");
+}
+
+@font-face {
+    font-family: "Lexend";
+    src: url("../assets/fonts/Lexend.ttf");
+}
+
+body {
+    color: #352B38;
+    background-color: #EDF1EA;
+    font-family: "Fira Code", "Courier New", Courier, monospace;
+    font-style: normal;
+    font-weight: 300;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 10vmin;
+    max-width: min(99%, 70em);
+    overflow-wrap: break-word;
+    overflow-y: scroll;
+}
+
+h1, h2 {
+    font-family: "Lexend", "Arial", Arial, sans-serif;
+    text-align: center;
+}
