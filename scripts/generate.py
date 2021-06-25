@@ -4,8 +4,13 @@ from utils.gen import index as gen_index
 from utils.gen import categories as gen_categories
 from utils.gen import runs as gen_runs
 
+print("Generating homepage...")
 gen_index.generate("../templates", "..", "index.html")
-gen_categories.generate()
-gen_runs.generate()
+
+print("Generating leaderboard pages for each category...")
+gen_categories.generate("../templates", "../categories", "category.html")
+
+# print("Generating details pages for each run...")
+# gen_runs.generate("../templates", "runs", "runs.html")
 
 print("Done generating site!")

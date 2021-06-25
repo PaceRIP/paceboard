@@ -23,22 +23,29 @@ def readerWithFunction(filepath, function, arg=None):
         return value
 
 
-def dictWriterSingleDict(filepath, dict):
+def dictWriter(filepath, dict, flag="w"):
     """Completely rewrite a csv using the values in a single dictionary.
 
     filepath -- the path of the csv, whether or not it exists
     dict -- the dictionary to pull all values from
+    flag -- flag for open() (default "w")
+        "w" will also activate writeheader()
     """
-    with open(filepath, "w", newline="") as file:
+    with open(filepath, flag, newline="") as file:
+
         dictWriter = csv.DictWriter(file, fieldnames=dict.keys(), delimiter=",")
-        dictWriter.writeheader()
+        if flag == "w":
+            dictWriter.writeheader()
         dictWriter.writerow(dict)
         file.close()
 
 
 def dictReaderFirstRow(filepath):
+    """Get a dictionary of the first (non-header) row of values in a csv
+
+    filepath -- the path of the csv, whether or not it exists
+    """
     with open(filepath, newline="") as file:
-        print(os.path.abspath(filepath))
         dict = {}
         dictReader = csv.DictReader(file)
         for row in dictReader:
@@ -46,6 +53,20 @@ def dictReaderFirstRow(filepath):
             if firstRow:
                 dict = row
             firstRow = False
+        file.close()
+        return dict
+
+
+def dictReaderMultiRow(filepath, idName):
+    """Get a dictionary of dictionaries of the (non-header) row of values in a csv
+
+    filepath -- the path of the csv, whether or not it exists
+    """
+    with open(filepath, newline="") as file:
+        dict = {}
+        dictReader = csv.DictReader(file)
+        for row in dictReader:
+            dict[row[idName]] = row
         file.close()
         return dict
 
