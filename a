@@ -1,0 +1,35 @@
+[1mdiff --git a/scripts/add-run.py b/scripts/add-run.py[m
+[1mindex e69de29..c2ab3a8 100644[m
+[1m--- a/scripts/add-run.py[m
+[1m+++ b/scripts/add-run.py[m
+[36m@@ -0,0 +1,30 @@[m
+[32m+[m[32m### Script for adding a new category. Handles adding data to config.csv.[m
+[32m+[m
+[32m+[m[32mfrom utils import csv as util_csv[m
+[32m+[m
+[32m+[m[32mdivider = "----------"[m
+[32m+[m
+[32m+[m[32mprint([m
+[32m+[m[32m    f"\nWe'll ask for the name, description, and rules of the new category.\n\n{divider}\n"[m
+[32m+[m[32m)[m
+[32m+[m
+[32m+[m[32m# tk_category_name, tk_category_dashname, tk_category_description, tk_category_rules[m
+[32m+[m
+[32m+[m[32mtk_category_name = input("Name:  ")[m
+[32m+[m[32mtk_category_description = input("Description:  ")[m
+[32m+[m[32mtk_category_rules = input("Rules:  ")[m
+[32m+[m
+[32m+[m[32mtk_category_dashname = tk_category_name.replace(" ", "_")[m
+[32m+[m
+[32m+[m[32mcategoryDict = {[m
+[32m+[m[32m    "tk_category_name": tk_category_name,[m
+[32m+[m[32m    "tk_category_dashname": tk_category_dashname,[m
+[32m+[m[32m    "tk_category_description": tk_category_description,[m
+[32m+[m[32m    "tk_category_rules": tk_category_rules,[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32mutil_csv.dictWriter("../csv/config.csv", categoryDict, "a")[m
+[32m+[m
+[32m+[m[32mprint([m
+[32m+[m[32m    f"\n{divider}\n\nAdded category! If you made a mistake, you can manually edit csv/categories.csv (and csv/runs.csv if you've added any runs to the borked category). \n"[m
+[32m+[m[32m)[m

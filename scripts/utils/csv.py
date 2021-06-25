@@ -1,15 +1,14 @@
 ### Util library for interacting with csv files
 
 import csv
-import os
 
 
 def readerWithFunction(filepath, function, arg=None):
     """Read from a csv and execute a function using each row. Return a sequential list of all values returned by the function.
 
-    filepath -- the path of the csv we're reading
-    function -- the function we're executing once per row
-    arg -- if the function takes an additional argument, we pass arg (default None)
+    filepath -- the path of the csv we're reading\n
+    function -- the function we're executing once per row\n
+    arg -- if the function takes an additional argument, we pass arg (default None)\n
     """
     with open(filepath, newline="") as file:
         reader = csv.reader(file, delimiter=",")
@@ -26,10 +25,10 @@ def readerWithFunction(filepath, function, arg=None):
 def dictWriter(filepath, dict, flag="w"):
     """Completely rewrite a csv using the values in a single dictionary.
 
-    filepath -- the path of the csv, whether or not it exists
-    dict -- the dictionary to pull all values from
-    flag -- flag for open() (default "w")
-        "w" will also activate writeheader()
+    filepath -- the path of the csv, whether or not it exists\n
+    dict -- the dictionary to pull all values from\n
+    flag -- flag for open() (default "w")\n
+        "w" will also activate writeheader()\n
     """
     with open(filepath, flag, newline="") as file:
 
@@ -43,7 +42,7 @@ def dictWriter(filepath, dict, flag="w"):
 def dictReaderFirstRow(filepath):
     """Get a dictionary of the first (non-header) row of values in a csv
 
-    filepath -- the path of the csv, whether or not it exists
+    filepath -- the path of the csv, whether or not it exists\n
     """
     with open(filepath, newline="") as file:
         dict = {}
@@ -60,7 +59,8 @@ def dictReaderFirstRow(filepath):
 def dictReaderMultiRow(filepath, idName):
     """Get a dictionary of dictionaries of the (non-header) row of values in a csv
 
-    filepath -- the path of the csv, whether or not it exists
+    filepath -- the path of the csv, whether or not it exists\n
+    idName -- the property in the header of the csv to use as each key of the resulting dictionary\n
     """
     with open(filepath, newline="") as file:
         dict = {}
@@ -74,8 +74,8 @@ def dictReaderMultiRow(filepath, idName):
 def getIndexOfField(filepath, field):
     """Get the index (column number) of a field in a csv.
 
-    filepath -- the path of the csv we're searching
-    field -- the field string we're looking for
+    filepath -- the path of the csv we're searching\n
+    field -- the field string we're looking for\n
     """
     return readerWithFunction(filepath, sub_getIndexOfField, field)[0]
 
@@ -83,7 +83,7 @@ def getIndexOfField(filepath, field):
 def sub_getIndexOfField(row, field):
     """Helper function for getIndexOfField() that can be passed to readerWithFunction().
 
-    row - the array representation of a csv row (presumably the fields row)
-    field - the field string we're looking for
+    row - the array representation of a csv row (presumably the fields row)\n
+    field - the field string we're looking for\n
     """
     return row.index(field)

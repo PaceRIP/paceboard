@@ -10,7 +10,7 @@ print(
 
 tk_game_name = input("Your game's name:  ")
 tk_game_description = input("Description for your game:  ")
-tk_url = input("URL of your site (format example - foobar.com):  ")
+tk_url = input("URL of your site (format - foobar.com):  ")
 tk_logo_alt = input("Description of your game's logo (this is used for alt-text):  ")
 
 configDict = {
