@@ -11,7 +11,7 @@ gen_index.generate("../templates", "..", "index.html")
 print("Generating leaderboard pages for each category...")
 gen_categories.generate("../templates", "../categories", "category.html")
 
-# print("Generating details pages for each run...")
-# gen_runs.generate("../templates", "runs", "runs.html")
+print("Generating details pages for each run...")
+gen_runs.generate("../templates", "../runs", "run.html")
 
 print("Done generating site!")

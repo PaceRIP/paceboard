@@ -42,7 +42,7 @@ def dictWriter(filepath, dict, flag="w"):
 def dictReaderFirstRow(filepath):
     """Get a dictionary of the first (non-header) row of values in a csv
 
-    filepath -- the path of the csv, whether or not it exists\n
+    filepath -- the path of the csv\n
     """
     with open(filepath, newline="") as file:
         dict = {}
@@ -59,7 +59,7 @@ def dictReaderFirstRow(filepath):
 def dictReaderMultiRow(filepath, idName):
     """Get a dictionary of dictionaries of the (non-header) row of values in a csv
 
-    filepath -- the path of the csv, whether or not it exists\n
+    filepath -- the path of the csv\n
     idName -- the property in the header of the csv to use as each key of the resulting dictionary\n
     """
     with open(filepath, newline="") as file:

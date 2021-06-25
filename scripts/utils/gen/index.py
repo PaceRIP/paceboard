@@ -8,9 +8,9 @@ import shutil
 def generate(templatedir, destinationdir, templateFilename):
     """Main generation function for index.html generation helper.
 
-    templatedir -- the relative path of the template html file's directory
-    destinationpath -- the directory where index.html should be generated
-    filename -- the filename of the index template (always index.html)
+    templatedir -- the relative path of the template html file's directory\n
+    destinationpath -- the directory where index.html should be generated\n
+    templateFilename -- the filename of the index template (always index.html)\n
     """
 
     shutil.copy(f"{templatedir}/{templateFilename}", destinationdir)
@@ -24,6 +24,8 @@ def generate(templatedir, destinationdir, templateFilename):
 
     tk_category_dashname = "tk_category_dashname"
     tk_category_name = "tk_category_name"
+
+    # lk_categories handler
     for category in categories:
 
         util_file.replaceTextInFile(

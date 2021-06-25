@@ -9,18 +9,18 @@ import os
 def generate(templatedir, destinationdir, templateFilename):
     """Main generation function for category page generation helper.
 
-    templatedir -- the relative path of the template html file's directory
-    destinationpath -- the directory where category paths should be generated
-    filename -- the filename of the category template (always category.html)
+    templatedir -- the relative path of the template html file's directory\n
+    destinationpath -- the directory where category paths should be generated\n
+    templateFilename -- the filename of the category template (always category.html)\n
     """
 
-    idName = "tk_category_dashname"
-    categories = util_csv.dictReaderMultiRow("../csv/categories.csv", idName)
+    categoryIdName = "tk_category_dashname"
+    categories = util_csv.dictReaderMultiRow("../csv/categories.csv", categoryIdName)
     config = util_csv.dictReaderFirstRow("../csv/config.csv")
 
     for category in categories:
 
-        path = f"{destinationdir}/{categories[category][idName]}"
+        path = f"{destinationdir}/{categories[category][categoryIdName]}"
         currentDir = os.getcwd()
 
         os.makedirs(path, exist_ok=True)
