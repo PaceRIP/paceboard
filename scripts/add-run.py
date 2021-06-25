@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 ### Script for adding a new category. Handles adding data to config.csv.
 
 from utils import csv as util_csv

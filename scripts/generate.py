@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 ### Generate all site pages using csv files.
 
 from utils.gen import index as gen_index
