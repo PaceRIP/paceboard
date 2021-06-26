@@ -5,9 +5,7 @@ from utils import csv as util_csv
 
 divider = "----------"
 
-print(
-    f"\nWe'll ask for the name, description, and rules of the new category.\n\n{divider}\n"
-)
+print(f"\nWe'll ask for the name and rules of the new category.\n\n{divider}\n")
 
 tk_category_name = input("Name:  ")
 tk_category_rules = input("Rules:  ")
