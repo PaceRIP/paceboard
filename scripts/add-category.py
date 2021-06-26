@@ -10,7 +10,6 @@ print(
 )
 
 tk_category_name = input("Name:  ")
-tk_category_description = input("Description:  ")
 tk_category_rules = input("Rules:  ")
 
 tk_category_dashname = tk_category_name.replace(" ", "_")
@@ -18,7 +17,6 @@ tk_category_dashname = tk_category_name.replace(" ", "_")
 categoryDict = {
     "tk_category_dashname": tk_category_dashname,
     "tk_category_name": tk_category_name,
-    "tk_category_description": tk_category_description,
     "tk_category_rules": tk_category_rules,
 }
 
