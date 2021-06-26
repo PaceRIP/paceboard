@@ -7,8 +7,8 @@ divider = "----------"
 
 print(f"\nWe'll ask for the name and rules of the new category.\n\n{divider}\n")
 
-tk_category_name = input("Name:  ")
-tk_category_rules = input("Rules:  ")
+tk_category_name = input("Name:  ").replace('"', "")
+tk_category_rules = input("Rules:  ").replace('"', "")
 
 tk_category_dashname = tk_category_name.replace(" ", "_").replace("%", "")
 

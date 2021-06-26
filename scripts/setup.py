@@ -9,10 +9,12 @@ print(
     f"\nWelcome to paceboard! Let's set up your leaderboard site :)\nWe'll save this info in csv/config.csv\n\n{divider}\n"
 )
 
-tk_game_name = input("Your game's name:  ")
-tk_game_description = input("Description for your game:  ")
+tk_game_name = input("Your game's name:  ").replace('"', "")
+tk_game_description = input("Description for your game:  ").replace('"', "")
 tk_url = input("URL of your site (format - foobar.com):  ")
-tk_logo_alt = input("Description of your game's logo (this is used for alt-text):  ")
+tk_logo_alt = input(
+    "Description of your game's logo (this is used for alt-text):  "
+).replace('"', "")
 
 configDict = {
     "tk_game_name": tk_game_name,
