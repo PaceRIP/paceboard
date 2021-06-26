@@ -25,7 +25,8 @@ def generate(templatedir, destinationdir, templateFilename):
     tk_category_dashname = "tk_category_dashname"
     tk_category_name = "tk_category_name"
 
-    # lk_categories handler
+    ## lk_categories handler ##
+
     for category in categories:
 
         util_file.replaceTextInFile(
@@ -33,4 +34,7 @@ def generate(templatedir, destinationdir, templateFilename):
             "lk_categories",
             f'<a class="categoryLink" href="categories/{categories[category][tk_category_dashname]}">{categories[category][tk_category_name]}</a>lk_categories',
         )
+
     util_file.replaceTextInFile(f"{destinationdir}/index.html", "lk_categories", "")
+
+    ## End of: lk_categories handler ##

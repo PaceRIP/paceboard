@@ -13,10 +13,12 @@ if len(categoriesOld.keys()) == 0:
     print("Add a category first (using scripts/add-category.py)")
     os._exit(1)
 
+## End of: Check to see if there's at least one category ##
+
 divider = "----------"
 
 print(
-    f"\nWe'll ask for the runner, verifier, category, run date, category, description of, and recording link of the new run.\n\n{divider}\n"
+    f"\nWe'll ask for the runner, verifier, run duration (time), category, run date, category, description of, and recording link of the new run.\n\n{divider}\n"
 )
 
 tk_run_id = 1
@@ -27,7 +29,23 @@ for id in existingRuns:
 tk_run_runner = input("Runner:  ")
 tk_run_verifier = input("Verifier:  ")
 
-## End of: Check to see if there's at least one category ##
+## Handle input of tk_run_duration ##
+
+doneDurationInput = False
+while not doneDurationInput:
+    tk_run_duration = input("Duration (format - HH:MM:SS):  ")
+    values = tk_run_duration.split(":")
+    if len(values) == 3:
+        try:
+            for value in values:
+                test = float(value)
+            doneDurationInput = True
+        except:
+            print("Invalid input!")
+    else:
+        print("Invalid input!")
+
+## End of: Handle input of tk_run_duration ##
 
 ## Handle input of tk_run_category_dashname ##
 
@@ -74,6 +92,7 @@ runDict = {
     "tk_run_id": tk_run_id,
     "tk_run_runner": tk_run_runner,
     "tk_run_verifier": tk_run_verifier,
+    "tk_run_duration": tk_run_duration,
     "tk_run_category_dashname": tk_run_category_dashname,
     "tk_run_date": tk_run_date,
     "tk_run_description": tk_run_description,

@@ -4,6 +4,7 @@ from .. import file as util_file
 from .. import csv as util_csv
 import shutil
 import os
+import datetime
 
 
 def generate(templatedir, destinationdir, templateFilename):
@@ -22,7 +23,8 @@ def generate(templatedir, destinationdir, templateFilename):
 
     for run in runs:
 
-        path = f"{destinationdir}/{runs[run][runIdName]}"
+        thisRun = runs[run]
+        path = f"{destinationdir}/{thisRun[runIdName]}"
         currentDir = os.getcwd()
 
         os.makedirs(path, exist_ok=True)
@@ -33,22 +35,25 @@ def generate(templatedir, destinationdir, templateFilename):
         )
 
         tk_run_link = ""
-        for key in runs[run]:
-            util_file.replaceTextInFile(f"{path}/index.html", key, runs[run][key])
+        for key in thisRun:
+            util_file.replaceTextInFile(f"{path}/index.html", key, thisRun[key])
             if key == "tk_run_link":
-                tk_run_link = runs[run][key]
+                tk_run_link = thisRun[key]
+            elif key == "tk_run_duration":
+                tk_run_duration = thisRun[key]
 
-        for key in categories[runs[run]["tk_run_category_dashname"]]:
+        for key in categories[thisRun["tk_run_category_dashname"]]:
             util_file.replaceTextInFile(
                 f"{path}/index.html",
                 key,
-                categories[runs[run]["tk_run_category_dashname"]][key],
+                categories[thisRun["tk_run_category_dashname"]][key],
             )
 
         for key in config.keys():
             util_file.replaceTextInFile(f"{path}/index.html", key, config[key])
 
-        # lk_run_link handler
+        ## lk_run_link handler ##
+
         if tk_run_link == "":
             util_file.replaceTextInFile(
                 f"{path}/index.html", "lk_run_link", "No recording available"
@@ -59,3 +64,19 @@ def generate(templatedir, destinationdir, templateFilename):
                 "lk_run_link",
                 f'<a class="runLink" href="{tk_run_link}">Run recording</a>',
             )
+
+        ## End of: lk_run_link handler ##
+
+        ## lk_run_duration handler ##
+
+        runDurationSplit = [float(value) for value in tk_run_duration.split(":")]
+        lk_run_duration = datetime.timedelta(
+            hours=runDurationSplit[0],
+            minutes=runDurationSplit[1],
+            seconds=runDurationSplit[2],
+        )
+        util_file.replaceTextInFile(
+            f"{path}/index.html", "lk_run_duration", str(lk_run_duration)
+        )
+
+        ## End of: lk_run_duration handler ##

@@ -27,6 +27,16 @@ h1, h2 {
     text-align: center;
 }
 
+.centerHoriz {
+    margin: auto;
+    width: 80%;
+}
+
 .categoryLink {
     display: block;
+}
+
+.categoryBoard {
+    font-weight: normal;
+    text-align: left;
 }
