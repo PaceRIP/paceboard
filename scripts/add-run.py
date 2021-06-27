@@ -10,7 +10,7 @@ categoriesOld = util_csv.dictReaderMultiRow(
     "../csv/categories.csv", "tk_category_dashname"
 )
 if len(categoriesOld.keys()) == 0:
-    print("Add a category first (using scripts/add-category.py)")
+    print("Add a category first!")
     os._exit(1)
 
 ## End of: Check to see if there's at least one category ##

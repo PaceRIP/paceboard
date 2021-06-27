@@ -4,27 +4,37 @@
 import subprocess, os
 import scripts.utils.csv as util_csv
 
-# If no setup completed, run setup script
-config = util_csv.dictReaderFirstRow("csv/config.csv")
-if config == {}:
-    subprocess.call("scripts/setup.py", shell=True)
+os.chdir("scripts/")
+cwd = os.getcwd()
 
-doneOptionInput = False
+
+def generate():
+    """Regenerate site"""
+    runIdName = "tk_run_id"
+    categoryIdName = "tk_category_dashname"
+    runs = util_csv.dictReaderMultiRow("../csv/runs.csv", runIdName)
+    categories = util_csv.dictReaderMultiRow("../csv/categories.csv", categoryIdName)
+    config = util_csv.dictReaderFirstRow("../csv/config.csv")
+    print(len(config))
+    print(len(categories))
+    print(len(runs))
+    if len(config) != 0 and len(categories) != 0 and len(runs) != 0:
+        subprocess.call(cwd + "/generate.py", shell=True)
 
 
 def optionSetup():
     """Reconfigure site details"""
-    print("hi")
+    subprocess.call(cwd + "/setup.py", shell=True)
 
 
 def optionAddCategory():
     """Add category"""
-    print("hello")
+    subprocess.call(cwd + "/add-category.py", shell=True)
 
 
 def optionAddRun():
     """Add run"""
-    print("cool")
+    subprocess.call(cwd + "/add-run.py", shell=True)
 
 
 def optionQuit():
@@ -32,8 +42,16 @@ def optionQuit():
     os._exit(1)
 
 
+# If no setup completed, run setup script
+config = util_csv.dictReaderFirstRow("../csv/config.csv")
+if len(config) == 0:
+    optionSetup()
+    generate()
+
+# Set options (as defined earlier)
 options = [optionSetup, optionAddCategory, optionAddRun, optionQuit]
 
+# Main loop
 while True:
     key = "tk_game_name"
     print(f"\n[ paceboard for {config[key]} ]")
@@ -48,8 +66,8 @@ while True:
             os._exit(1)
         optionInput = int(rawOptionInput)
         if 0 < optionInput <= len(options):
-            print("")
             options[optionInput - 1]()
+            generate()
         else:
             print("Not a valid choice!")
     except:
