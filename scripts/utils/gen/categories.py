@@ -2,9 +2,7 @@
 
 from .. import file as util_file
 from .. import csv as util_csv
-import shutil
-import os
-import datetime
+import shutil, os, datetime
 
 
 def generate(templatedir, destinationdir, templateFilename):
