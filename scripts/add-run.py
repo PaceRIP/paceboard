@@ -59,7 +59,7 @@ while not doneCategoryInput:
     categoriesNew = {}
     for category in categoriesOld:
         categoriesNew[index] = categoriesOld[category]
-        print(f"{index} - {categoriesNew[index][displayName]}")
+        print(f"{index + 1} - {categoriesNew[index][displayName]}")
         index += 1
 
     try:
@@ -67,7 +67,7 @@ while not doneCategoryInput:
             rawCategoryInput = input("Your pick:  ")
         except KeyboardInterrupt:
             os._exit(1)
-        categoryInput = int(rawCategoryInput)
+        categoryInput = int(rawCategoryInput) - 1
         if categoryInput <= index:
             try:
                 tk_run_category_dashname = categoriesNew[categoryInput][
@@ -102,5 +102,5 @@ runDict = {
 util_csv.dictWriter("../csv/runs.csv", runDict, "a")
 
 print(
-    f"\n{divider}\n\nAdded run! If you made a mistake, you can manually edit csv/runs.csv\n"
+    f"\n{divider}\n\nAdded run! If you made a mistake, you can manually edit csv/runs.csv"
 )

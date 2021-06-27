@@ -12,13 +12,8 @@ def generate():
     """Regenerate site"""
     runIdName = "tk_run_id"
     categoryIdName = "tk_category_dashname"
-    runs = util_csv.dictReaderMultiRow("../csv/runs.csv", runIdName)
-    categories = util_csv.dictReaderMultiRow("../csv/categories.csv", categoryIdName)
     config = util_csv.dictReaderFirstRow("../csv/config.csv")
-    print(len(config))
-    print(len(categories))
-    print(len(runs))
-    if len(config) != 0 and len(categories) != 0 and len(runs) != 0:
+    if len(config) != 0:
         subprocess.call(cwd + "/generate.py", shell=True)
 
 
@@ -39,6 +34,7 @@ def optionAddRun():
 
 def optionQuit():
     """Quit"""
+    print()
     os._exit(1)
 
 
@@ -54,6 +50,7 @@ options = [optionSetup, optionAddCategory, optionAddRun, optionQuit]
 # Main loop
 while True:
     key = "tk_game_name"
+    config = util_csv.dictReaderFirstRow("../csv/config.csv")
     print(f"\n[ paceboard for {config[key]} ]")
     index = 0
     for option in options:

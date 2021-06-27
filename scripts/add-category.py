@@ -21,5 +21,5 @@ categoryDict = {
 util_csv.dictWriter("../csv/categories.csv", categoryDict, "a")
 
 print(
-    f"\n{divider}\n\nAdded category! If you made a mistake, you can manually edit csv/categories.csv (and csv/runs.csv if you've added any runs to the borked category). \n"
+    f"\n{divider}\n\nAdded category! If you made a mistake, you can manually edit csv/categories.csv (and csv/runs.csv if you've added any runs to the borked category)."
 )

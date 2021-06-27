@@ -25,6 +25,4 @@ configDict = {
 
 util_csv.dictWriter("../csv/config.csv", configDict)
 
-print(
-    f"\n{divider}\n\nPerfect! You can always overwrite the info above by running this script again.\nHere's an overview of how to use paceboard:\n\n- Add a category using scripts/add-category.py\n- Add a run using scripts/add-run.py\n- Use scripts/generate.py to update the site with the info you've added.\n- All categories, runs, and configuration details are stored in csv/\n- Replace the logo saved as assets/img/logo.png\n- For the adventurous, you can restyle your site's pages by editing files within templates/ and css/\n\nRemember to run scripts/generate.py to initialize your site.\nThat's all for now! <3\n"
-)
+print(f"\n{divider}\n\nPerfect, that's all for now! <3")
