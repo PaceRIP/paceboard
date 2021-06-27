@@ -92,7 +92,16 @@ def generate(templatedir, destinationdir, templateFilename):
             thisDate = thisRun["tk_run_date"]
 
             lk_leaderboard += f'<tr><th>{place}.</th><th>{thisRunner}</th><th><a href="{thisLink}">{thisDuration}</a></th><th>{thisDate}</th></tr>'
+
+            # Also handle replacing lk_run_place on run pages
+            util_file.replaceTextInFile(
+                f"{destinationdir}/../runs/{thisRunId}/index.html",
+                "lk_run_place",
+                str(place),
+            )
+
             place += 1
+
         lk_leaderboard += "</table>"
 
         util_file.replaceTextInFile(

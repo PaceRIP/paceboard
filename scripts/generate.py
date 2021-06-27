@@ -8,10 +8,11 @@ from utils.gen import runs as gen_runs
 print("Generating homepage...")
 gen_index.generate("../templates", "..", "index.html")
 
+print("Generating details pages for each run...")
+gen_runs.generate("../templates", "../runs", "run.html")
+
 print("Generating leaderboard pages for each category...")
 gen_categories.generate("../templates", "../categories", "category.html")
 
-print("Generating details pages for each run...")
-gen_runs.generate("../templates", "../runs", "run.html")
 
 print("Done generating site!")
