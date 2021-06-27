@@ -79,7 +79,7 @@ while not doneCategoryInput:
         else:
             print("Not a valid choice!")
     except:
-        print("Not a number!")
+        print("Not a valid choice!")
 print(f"You picked - {categoriesNew[categoryInput][displayName]}\n")
 
 ## End of: Handle input of tk_run_category_dashname ##
