@@ -4,6 +4,7 @@
 import subprocess, os
 import scripts.utils.csv as util_csv
 
+# Change and get current working directory, for compatibility with standalone scripts
 os.chdir("scripts/")
 cwd = os.getcwd()
 
@@ -44,10 +45,10 @@ if len(config) == 0:
     optionSetup()
     generate()
 
-# Set options (as defined earlier)
+# Set options (functions as defined earlier)
 options = [optionSetup, optionAddCategory, optionAddRun, optionQuit]
 
-# Main loop
+# Main loop and input handler
 while True:
     key = "tk_game_name"
     config = util_csv.dictReaderFirstRow("../csv/config.csv")

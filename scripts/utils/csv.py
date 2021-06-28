@@ -3,25 +3,6 @@
 import csv
 
 
-def readerWithFunction(filepath, function, arg=None):
-    """Read from a csv and execute a function using each row. Return a sequential list of all values returned by the function.
-
-    filepath -- the path of the csv we're reading\n
-    function -- the function we're executing once per row\n
-    arg -- if the function takes an additional argument, we pass arg (default None)\n
-    """
-    with open(filepath, newline="") as file:
-        reader = csv.reader(file, delimiter=",")
-        value = []
-        for row in reader:
-            if arg == None:
-                value.append(function(row))
-            else:
-                value.append(function(row, arg))
-        file.close()
-        return value
-
-
 def dictWriter(filepath, dict, flag="w"):
     """Completely rewrite a csv using the values in a single dictionary.
 
@@ -40,7 +21,7 @@ def dictWriter(filepath, dict, flag="w"):
 
 
 def dictReaderFirstRow(filepath):
-    """Get a dictionary of the first (non-header) row of values in a csv
+    """Get a dictionary of the first (non-header) row of values in a csv.
 
     filepath -- the path of the csv\n
     """
@@ -57,7 +38,7 @@ def dictReaderFirstRow(filepath):
 
 
 def dictReaderMultiRow(filepath, idName):
-    """Get a dictionary of dictionaries of the (non-header) row of values in a csv
+    """Get a dictionary of dictionaries of the (non-header) row of values in a csv.
 
     filepath -- the path of the csv\n
     idName -- the property in the header of the csv to use as each key of the resulting dictionary\n
@@ -71,8 +52,27 @@ def dictReaderMultiRow(filepath, idName):
         return dict
 
 
+def readerWithFunction(filepath, function, arg=None):
+    """Read from a csv and execute a function using each row. Return a sequential list of all values returned by the function. Not currently used, but included for convenience.
+
+    filepath -- the path of the csv we're reading\n
+    function -- the function we're executing once per row\n
+    arg -- if the function takes an additional argument, we pass arg (default None)\n
+    """
+    with open(filepath, newline="") as file:
+        reader = csv.reader(file, delimiter=",")
+        value = []
+        for row in reader:
+            if arg == None:
+                value.append(function(row))
+            else:
+                value.append(function(row, arg))
+        file.close()
+        return value
+
+
 def getIndexOfField(filepath, field):
-    """Get the index (column number) of a field in a csv.
+    """Get the index (column number) of a field in a csv. Not currently used, but included for convenience.
 
     filepath -- the path of the csv we're searching\n
     field -- the field string we're looking for\n

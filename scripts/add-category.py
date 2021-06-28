@@ -7,17 +7,21 @@ divider = "----------"
 
 print(f"\nWe'll ask for the name and rules of the new category.\n\n{divider}\n")
 
+# All input handling
 tk_category_name = input("Name:  ").replace('"', "")
 tk_category_rules = input("Rules:  ").replace('"', "")
 
+# Generate dashname (specifically for directory names)
 tk_category_dashname = tk_category_name.replace(" ", "_").replace("%", "")
 
+# Define category dictionary
 categoryDict = {
     "tk_category_dashname": tk_category_dashname,
     "tk_category_name": tk_category_name,
     "tk_category_rules": tk_category_rules,
 }
 
+# Write to csv
 util_csv.dictWriter("../csv/categories.csv", categoryDict, "a")
 
 print(

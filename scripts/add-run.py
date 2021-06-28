@@ -26,6 +26,7 @@ existingRuns = util_csv.dictReaderMultiRow("../csv/runs.csv", "tk_run_id")
 for id in existingRuns:
     tk_run_id = int(id) + 1
 
+# Handle input of tk_run_runner and tk_run_verifier
 tk_run_runner = input("Runner:  ").replace('"', "")
 tk_run_verifier = input("Verifier:  ").replace('"', "")
 
@@ -51,7 +52,6 @@ while not doneDurationInput:
 
 doneCategoryInput = False
 displayName = "tk_category_name"
-
 while not doneCategoryInput:
     print("\nCategory (input a number)")
 
@@ -84,10 +84,12 @@ print(f"You picked - {categoriesNew[categoryInput][displayName]}\n")
 
 ## End of: Handle input of tk_run_category_dashname ##
 
+# Handle input of tk_run_date, tk_run_description, and tk_run_link
 tk_run_date = input("Date (format - MM/DD/YYYY):  ").replace('"', "")
 tk_run_description = input("Description:  ").replace('"', "")
 tk_run_link = input("Recording link (format - https://foo.bar):  ")
 
+# Define run dictionary
 runDict = {
     "tk_run_id": tk_run_id,
     "tk_run_runner": tk_run_runner,
@@ -99,6 +101,7 @@ runDict = {
     "tk_run_link": tk_run_link,
 }
 
+# Write to csv
 util_csv.dictWriter("../csv/runs.csv", runDict, "a")
 
 print(

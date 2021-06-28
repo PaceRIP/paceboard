@@ -13,28 +13,25 @@ def generate(templatedir, destinationdir, templateFilename):
     templateFilename -- the filename of the index template (always index.html)\n
     """
 
+    # Copy template to appropriate directory
     shutil.copy(f"{templatedir}/{templateFilename}", destinationdir)
 
+    # Read categories and config csv files
     idName = "tk_category_dashname"
     categories = util_csv.dictReaderMultiRow("../csv/categories.csv", idName)
     config = util_csv.dictReaderFirstRow("../csv/config.csv")
 
+    # Replace config tk placeholders with values
     for key in config.keys():
         util_file.replaceTextInFile(f"{destinationdir}/index.html", key, config[key])
 
+    # lk_categories handler
     tk_category_dashname = "tk_category_dashname"
     tk_category_name = "tk_category_name"
-
-    ## lk_categories handler ##
-
     for category in categories:
-
         util_file.replaceTextInFile(
             f"{destinationdir}/index.html",
             "lk_categories",
             f'<a class="categoryLink" href="categories/{categories[category][tk_category_dashname]}">{categories[category][tk_category_name]}</a>lk_categories',
         )
-
     util_file.replaceTextInFile(f"{destinationdir}/index.html", "lk_categories", "")
-
-    ## End of: lk_categories handler ##

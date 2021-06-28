@@ -13,6 +13,7 @@ def generate(templatedir, destinationdir, templateFilename):
     templateFilename -- the filename of the category template (always category.html)\n
     """
 
+    # Read runs, categories, and config csv files
     runIdName = "tk_run_id"
     categoryIdName = "tk_category_dashname"
     runs = util_csv.dictReaderMultiRow("../csv/runs.csv", runIdName)
@@ -21,25 +22,29 @@ def generate(templatedir, destinationdir, templateFilename):
 
     for category in categories:
 
+        # Get proper directory
         thisCategory = categories[category]
         path = f"{destinationdir}/{thisCategory[categoryIdName]}"
         currentDir = os.getcwd()
 
+        # Copy template to appropriate directory
         os.makedirs(path, exist_ok=True)
-
         shutil.copy(
             f"{currentDir}/{templatedir}/{templateFilename}",
             f"{currentDir}/{path}/index.html",
         )
 
+        # Replace category tk placeholders with values
         for key in thisCategory:
             util_file.replaceTextInFile(f"{path}/index.html", key, thisCategory[key])
 
+        # Replace config tk placeholders with values
         for key in config.keys():
             util_file.replaceTextInFile(f"{path}/index.html", key, config[key])
 
         ## lk_leaderboard handler ##
 
+        # Find runsInCategory
         runsInCategory = {}
         for run in runs:
             thisRun = runs[run]
@@ -49,19 +54,20 @@ def generate(templatedir, destinationdir, templateFilename):
             ):
                 runsInCategory[thisRun["tk_run_id"]] = thisRun
 
+        # Find runDurationsInCategory by parsing runsInCategory values
         runDurationsInCategory = {}
         for run in runsInCategory:
             thisRun = runsInCategory[run]
             runDurationSplit = [
                 float(value) for value in thisRun["tk_run_duration"].split(":")
             ]
-
             runDurationsInCategory[thisRun["tk_run_id"]] = datetime.timedelta(
                 hours=runDurationSplit[0],
                 minutes=runDurationSplit[1],
                 seconds=runDurationSplit[2],
             )
 
+        # Find sortedRunsInCategory by sorting durations from runDurationsInCategory
         sortedRunsInCategory = {
             runId: runDuration
             for runId, runDuration in sorted(
@@ -69,6 +75,7 @@ def generate(templatedir, destinationdir, templateFilename):
             )
         }
 
+        # Find trimmedRunsInCategory by only including one run per runner from sortedRunsInCategory
         trimmedRunsInCategory = {}
         runnersRepresentedInCategory = []
         for run in sortedRunsInCategory:
@@ -78,10 +85,12 @@ def generate(templatedir, destinationdir, templateFilename):
                 trimmedRunsInCategory[thisRun["tk_run_id"]] = thisRun
             runnersRepresentedInCategory.append(runner)
 
+        # Replace lk_leaderboard with category leaderboard table
         place = 1
         lk_leaderboard = '<table class="categoryBoard centerHoriz">'
         for run in trimmedRunsInCategory:
 
+            # Define values for table
             thisRun = trimmedRunsInCategory[run]
             thisRunner = thisRun["tk_run_runner"]
             thisRunId = thisRun["tk_run_id"]
@@ -89,6 +98,7 @@ def generate(templatedir, destinationdir, templateFilename):
             thisDuration = str(runDurationsInCategory[thisRunId])
             thisDate = thisRun["tk_run_date"]
 
+            # Concatenate a row to the table
             lk_leaderboard += f'<tr><th>{place}.</th><th>{thisRunner}</th><th><a href="{thisLink}">{thisDuration}</a></th><th>{thisDate}</th></tr>'
 
             # Also handle replacing lk_run_place on run pages
@@ -99,9 +109,9 @@ def generate(templatedir, destinationdir, templateFilename):
             )
 
             place += 1
-
         lk_leaderboard += "</table>"
 
+        # Replace lk_leaderboard placeholder with table string
         util_file.replaceTextInFile(
             f"{path}/index.html", "lk_leaderboard", lk_leaderboard
         )
