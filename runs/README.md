@@ -1,3 +1,3 @@
 # paceboard/runs
 
-Directory for run pages created by `generate.py`, corresponding to entries in `runs.csv`.
+Directory for run pages, corresponding to entries in `runs.csv`.
