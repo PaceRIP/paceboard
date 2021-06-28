@@ -76,13 +76,13 @@ def generate(templatedir, destinationdir, templateFilename):
         }
 
         # Find trimmedRunsInCategory by only including one run per runner from sortedRunsInCategory
-        trimmedRunsInCategory = {}
+        trimmedRunsInCategory = []
         runnersRepresentedInCategory = []
         for run in sortedRunsInCategory:
             thisRun = runs[run]
             runner = thisRun["tk_run_runner"]
             if runner not in runnersRepresentedInCategory:
-                trimmedRunsInCategory[thisRun["tk_run_id"]] = thisRun
+                trimmedRunsInCategory.append(thisRun)
             runnersRepresentedInCategory.append(runner)
 
         # Replace lk_leaderboard with category leaderboard table
@@ -91,19 +91,18 @@ def generate(templatedir, destinationdir, templateFilename):
         for run in trimmedRunsInCategory:
 
             # Define values for table
-            thisRun = trimmedRunsInCategory[run]
-            thisRunner = thisRun["tk_run_runner"]
-            thisRunId = thisRun["tk_run_id"]
-            thisLink = f"../../runs/{thisRunId}"
-            thisDuration = str(runDurationsInCategory[thisRunId])
-            thisDate = thisRun["tk_run_date"]
+            runner = run["tk_run_runner"]
+            runId = run["tk_run_id"]
+            runLink = f"../../runs/{runId}"
+            runDuration = str(runDurationsInCategory[runId])
+            runDate = run["tk_run_date"]
 
             # Concatenate a row to the table
-            lk_leaderboard += f'<tr><th>{place}.</th><th>{thisRunner}</th><th><a href="{thisLink}">{thisDuration}</a></th><th>{thisDate}</th></tr>'
+            lk_leaderboard += f'<tr><th>{place}.</th><th>{runner}</th><th><a href="{runLink}">{runDuration}</a></th><th>{runDate}</th></tr>'
 
             # Also handle replacing lk_run_place on run pages
             util_file.replaceTextInFile(
-                f"{destinationdir}/../runs/{thisRunId}/index.html",
+                f"{destinationdir}/../runs/{runId}/index.html",
                 "lk_run_place",
                 str(place),
             )
