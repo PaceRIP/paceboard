@@ -8,16 +8,24 @@
     src: url("../assets/fonts/Lexend.ttf");
 }
 
+:root {
+    --color-text-primary: #352B38;
+    --color-text-link: #306662;
+    --color-background-primary: #EDF1EA;
+    --color-background-secondary: #D9DED4;
+    --color-background-tertiary: #EBE1E9;
+}
+
 body {
-    color: #352B38;
-    background-color: #EDF1EA;
+    color: var(--color-text-primary);
+    background-color: var(--color-background-primary);
     font-family: "Fira Code", "Courier New", Courier, monospace;
     font-style: normal;
     font-weight: 300;
     margin: auto;
     margin-top: 50px;
     margin-bottom: 10vmin;
-    max-width: min(99%, 70em);
+    max-width: min(98%, 45em);
     overflow-wrap: break-word;
     overflow-y: scroll;
 }
@@ -27,16 +35,64 @@ h1, h2 {
     text-align: center;
 }
 
+h2 {
+    margin-bottom: 16px;
+}
+
+p {
+    padding-left: 0.6em;
+    padding-right: 0.6em;
+}
+
+a {
+    color: var(--color-text-link)
+}
+
+table, tr, th, td {
+    border-collapse: collapse;
+}
+
+td:first-child {
+    padding-left: 0.6em;
+}
+
+td:last-child {
+    padding-right: 0.6em;
+}
+
+.reduceTopMargin {
+    margin-top: -0.75em;
+}
+
 .centerHoriz {
     margin: auto;
-    width: 80%;
+    width: min(100%, 45em);
 }
 
 .categoryLink {
+    padding-top: 1em;
     display: block;
 }
 
 .categoryBoard {
-    font-weight: normal;
+    background-color: var(--color-background-secondary);
     text-align: left;
+}
+
+.categoryBoard tr td:nth-child(3) {
+    text-align: center;
+}
+
+.categoryBoard tr td:nth-child(4) {
+    text-align: right;
+}
+
+.categoryBoard tr:nth-child(even) {
+    background-color: var(--color-background-tertiary);
+}
+
+.runContainer {
+    text-align: center;
+    padding-bottom: 3%;
+    padding-top: 3%
 }
