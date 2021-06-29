@@ -2,7 +2,7 @@
 
 ![Project logo, a sine wave forming gravestones in the negative space.](assets/img/logo.png)
 
-[Blog post]() - [Example site]()
+[Blog post](https://info.pace.rip/blog/2021/6/29/) - [Example site](https://info.pace.rip/blog/2021/6/29/paceboard/)
 
 ## About
 
