@@ -98,7 +98,7 @@ def generate(templatedir, destinationdir, templateFilename):
             runDate = run["tk_run_date"]
 
             # Concatenate a row to the table
-            lk_leaderboard += f'<tr><th>{place}.</th><th>{runner}</th><th><a href="{runLink}">{runDuration}</a></th><th>{runDate}</th></tr>'
+            lk_leaderboard += f'<tr><td>{place}.</td><td>{runner}</td><td><a href="{runLink}">{runDuration}</a></td><td>{runDate}</td></tr>'
 
             # Also handle replacing lk_run_place on run pages
             util_file.replaceTextInFile(
